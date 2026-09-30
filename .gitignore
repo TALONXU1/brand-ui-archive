@@ -1,0 +1,63 @@
+# Personal & Academic Exams
+05_党课学习与结业考试/
+*.pdf
+
+# Python Scripts & Data Scraping Caches
+*.py
+*.bat
+*.jsx
+*.json
+__pycache__/
+*.pyc
+*.log
+scratch/
+
+# Raw Photo Archives & Local Candidates
+photo_archive/
+上海摄影精选_高质量竖屏构图/
+上海知名摄影师作品精选_大师构图竖屏/
+巨富长街区摄影库_三街归档/
+candidates/
+candidates_curated/
+shikumen_candidates/
+slides_preview/
+biennale_slides_preview/
+reference_pdf_pages/
+temp_ikea_media/
+photo_modern/
+authentic_posters/
+30_Award_Winning_Typography_Posters/
+edg_madrid_masters_images/
+xizi_test/
+ai_preview/
+social_media_photos/
+single_grid_preview/
+sketches/
+psd_assets/
+psd_assets_v2/
+海报设计资产库_Poster_Assets_Archive/
+investment-core-7-skills/
+01_竞赛与评审标准/
+02_选题方案库/
+03_字体设计与海报方法论/
+04_优秀作品案例与素材库/
+README_TYPOGRAPHY_KB.md
+TEXT_BANK_FOR_DESIGNER.md
+AGENTS.md
+
+# Heavy Graphic Design Sources
+*.ai
+*.psd
+*.zip
+
+# Loose Scrape Images
+cand_*.jpg
+photo_*.jpg
+wolf_*.jpg
+test_*.png
+test_*.webp
+*.png
+*.jpg
+*.jpeg
+
+prompts/
