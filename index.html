@@ -1059,6 +1059,9 @@
               <line x1="10" y1="14" x2="21" y2="3"></line>
             </svg>
           </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-copy" id="modalArchiveBtn" title="若官网报错、停服或改版，可查看历史完整设计快照">
+            历史完整快照 (Wayback) ↗
+          </a>
           <button class="btn-copy" id="modalCopyBtn">
             复制链接
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1592,6 +1595,10 @@
       modalTitle.textContent = item.name;
       modalDesc.textContent = item.desc;
       modalVisitBtn.href = item.url;
+      const modalArchiveBtn = document.getElementById('modalArchiveBtn');
+      if (modalArchiveBtn) {
+        modalArchiveBtn.href = 'https://web.archive.org/web/' + item.url;
+      }
 
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
