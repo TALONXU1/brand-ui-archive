@@ -9,31 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ========================================================
+       GODLY.WEBSITE / MINIMAL GALLERY DESIGN SYSTEM
+       ======================================================== */
     :root {
       --bg-base: #09090b;
       --bg-surface: #101014;
-      --bg-card: #131317;
-      --bg-card-hover: #18181f;
-      --border-subtle: #1e1e24;
-      --border-medium: #2a2a32;
-      --border-hover: #40404c;
+      --bg-card: #121216;
+      --bg-card-hover: #17171d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.14);
+      --border-hover: rgba(255, 255, 255, 0.28);
       
-      --text-primary: #f4f4f6;
+      --text-primary: #ededed;
       --text-secondary: #a1a1aa;
       --text-muted: #71717a;
-      --text-faint: #52525b;
+      --text-faint: #3f3f46;
       
       --accent: #ffffff;
-      --accent-dim: rgba(255, 255, 255, 0.12);
-      
-      --cat-brand: #f59e0b;
-      --cat-web: #06b6d4;
-      --cat-ui: #3b82f6;
-      --cat-mobile: #a855f7;
-      --cat-space: #f97316;
-      --cat-graphic: #ec4899;
-      --cat-grid: #10b981;
-      --cat-tool: #818cf8;
+      --accent-rgb: 255, 255, 255;
     }
 
     * {
@@ -53,13 +47,13 @@
       line-height: 1.5;
     }
 
-    /* Masthead Header (Godly / Minimal Gallery Minimalist Standard) */
+    /* Top Sticky Navigation (Godly / Minimal Gallery Standard) */
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       background: rgba(9, 9, 11, 0.88);
       border-bottom: 1px solid var(--border-subtle);
     }
@@ -76,34 +70,37 @@
 
     .masthead-brand {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 10px;
       text-decoration: none;
       color: inherit;
+      flex-shrink: 0;
     }
 
-    .masthead-title {
-      font-size: 15px;
+    .masthead-logo {
+      font-size: 14px;
       font-weight: 800;
-      letter-spacing: -0.03em;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .masthead-sep {
+      color: var(--text-faint);
+      font-size: 12px;
     }
 
     .masthead-sub {
-      font-size: 10.5px;
-      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
       color: var(--text-muted);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      font-weight: 400;
     }
 
     /* Minimalist Search */
     .search-container {
       flex: 1;
-      max-width: 440px;
+      max-width: 480px;
       position: relative;
     }
 
@@ -112,7 +109,7 @@
       background: #141418;
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
-      padding: 7px 16px 7px 34px;
+      padding: 8px 16px 8px 36px;
       color: var(--text-primary);
       font-size: 12px;
       outline: none;
@@ -126,8 +123,8 @@
 
     .search-input:focus {
       background: #18181f;
-      border-color: #52525b;
-      box-shadow: 0 0 0 1px #52525b;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
     }
 
     .search-icon {
@@ -135,8 +132,8 @@
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      width: 13px;
-      height: 13px;
+      width: 14px;
+      height: 14px;
       color: var(--text-muted);
       pointer-events: none;
     }
@@ -149,6 +146,9 @@
       font-size: 10px;
       font-family: 'JetBrains Mono', monospace;
       color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 5px;
+      border-radius: 4px;
       pointer-events: none;
     }
 
@@ -156,7 +156,47 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .sync-indicator {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .sync-indicator:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+    }
+
+    .sync-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    .sync-dot.loading {
+      background: #f59e0b;
+      animation: pulseDot 1.4s infinite ease-in-out;
+    }
+
+    .sync-dot.fallback {
+      background: #71717a;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
     }
 
     /* View Switcher */
@@ -173,14 +213,14 @@
       background: transparent;
       border: none;
       color: var(--text-secondary);
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -198,13 +238,74 @@
     main {
       max-width: 1720px;
       margin: 0 auto;
-      padding: 24px 28px 80px;
+      padding: 36px 28px 100px;
       position: relative;
     }
 
-    /* Curated Category Bar (Minimalist Tabs) */
+    /* Editorial Masthead Hero (Minimal Gallery / Godly Aesthetic) */
+    .masthead-hero {
+      margin-bottom: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-top-tag {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      line-height: 1.18;
+      max-width: 920px;
+      margin-bottom: 12px;
+    }
+
+    .hero-lead {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 22px;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+    }
+
+    .stat-spec {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .stat-num {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .stat-lbl {
+      color: var(--text-muted);
+    }
+
+    .stat-divider {
+      color: var(--text-faint);
+    }
+
+    /* Curated Category Bar (Capsule Pills) */
     .filter-section {
-      margin-bottom: 26px;
+      margin-bottom: 18px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -217,17 +318,16 @@
       background: transparent;
       border: 1px solid transparent;
       color: var(--text-muted);
-      padding: 4px 12px;
+      padding: 5px 13px;
       border-radius: 999px;
       font-size: 11.5px;
       font-weight: 500;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       transition: all 0.18s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     .filter-pill:hover {
@@ -245,7 +345,14 @@
     .filter-count {
       font-size: 10px;
       font-family: 'JetBrains Mono', monospace;
-      opacity: 0.7;
+      opacity: 0.65;
+    }
+
+    .filter-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
     .bookmark-pill.active {
@@ -254,36 +361,79 @@
       border-color: #f43f5e !important;
     }
 
+    /* Sticky Timeline Navigator */
+    .timeline-nav {
+      position: sticky;
+      top: 57px;
+      z-index: 40;
+      background: rgba(9, 9, 11, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 8px 0;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border-subtle);
+      scrollbar-width: none;
+    }
+    .timeline-nav::-webkit-scrollbar { display: none; }
+
+    .timeline-nav-item {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .timeline-nav-item:hover, .timeline-nav-item.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .timeline-nav-item.active {
+      background: #ffffff;
+      color: #09090b;
+      font-weight: 600;
+    }
+
     /* Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 22px;
+      gap: 24px;
     }
 
     /* Specimen Card (Godly Clean Standard - NO Fake Browser Mockup) */
     .specimen-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.25s ease, transform 0.25s ease;
+      transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       cursor: pointer;
     }
 
     .specimen-card:hover {
       border-color: var(--border-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     /* Media Aspect Container (16:10 Hero Viewport) */
     .specimen-media-wrap {
       width: 100%;
       aspect-ratio: 16 / 10;
-      background: #0d0e12;
+      background: #111115;
       position: relative;
       overflow: hidden;
     }
@@ -294,11 +444,11 @@
       object-fit: cover;
       object-position: top center;
       transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-      background: #0d0e12;
+      background: #111115;
     }
 
     .specimen-card:hover .specimen-img {
-      transform: scale(1.028);
+      transform: scale(1.03);
     }
 
     /* Hover Overlay & Action Pill */
@@ -321,12 +471,12 @@
 
     .specimen-visit-btn {
       pointer-events: auto;
-      background: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.28);
       color: #fff;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
       font-size: 11px;
       font-weight: 600;
@@ -344,18 +494,18 @@
       border-color: #ffffff;
     }
 
-    /* Bookmark Star */
+    /* Bookmark Button */
     .specimen-bookmark-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 10px;
+      right: 10px;
       z-index: 5;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: rgba(9, 9, 11, 0.7);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: rgba(255, 255, 255, 0.7);
       display: flex;
       align-items: center;
@@ -386,12 +536,12 @@
       fill: #f43f5e;
     }
 
-    /* Card Metadata Area (Tight Typographic Specimen) */
+    /* Card Metadata Area */
     .specimen-meta {
-      padding: 12px 14px 14px;
+      padding: 14px 16px 16px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .specimen-meta-top {
@@ -448,14 +598,14 @@
 
     /* Timeline Section Header */
     .date-section {
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
 
     .date-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 18px;
       padding-top: 4px;
     }
 
@@ -466,11 +616,11 @@
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       background: #141418;
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
-      padding: 3px 10px;
+      padding: 4px 12px;
     }
 
     .date-count {
@@ -485,54 +635,11 @@
       background: var(--border-subtle);
     }
 
-    /* Sticky Timeline Navigator */
-    .timeline-nav {
-      position: sticky;
-      top: 57px;
-      z-index: 40;
-      background: rgba(9, 9, 11, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 8px 0;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      overflow-x: auto;
-      border-bottom: 1px solid var(--border-subtle);
-      scrollbar-width: none;
-    }
-    .timeline-nav::-webkit-scrollbar { display: none; }
-
-    .timeline-nav-item {
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 3px 10px;
-      font-size: 10.5px;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--text-muted);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s;
-    }
-
-    .timeline-nav-item:hover, .timeline-nav-item.active {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .timeline-nav-item.active {
-      background: #ffffff;
-      color: #09090b;
-      font-weight: 600;
-    }
-
     /* Table View */
     .table-container {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow-x: auto;
     }
 
@@ -545,7 +652,7 @@
 
     table.compact-table th {
       background: #101014;
-      padding: 10px 14px;
+      padding: 12px 16px;
       color: var(--text-muted);
       font-weight: 600;
       border-bottom: 1px solid var(--border-subtle);
@@ -556,7 +663,7 @@
     }
 
     table.compact-table td {
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-secondary);
       vertical-align: middle;
@@ -567,11 +674,11 @@
     }
 
     .table-thumb {
-      width: 60px;
-      height: 38px;
-      border-radius: 4px;
+      width: 68px;
+      height: 42px;
+      border-radius: 5px;
       object-fit: cover;
-      background: #0d0e12;
+      background: #111115;
       border: 1px solid var(--border-subtle);
     }
 
@@ -579,14 +686,14 @@
     .deep-dive-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-      gap: 20px;
+      gap: 24px;
     }
 
     .deep-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 22px;
+      border-radius: 10px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -629,7 +736,7 @@
       background: #141418;
       border: 1px solid var(--border-subtle);
       border-radius: 5px;
-      padding: 3px 7px;
+      padding: 3px 8px;
       font-size: 10.5px;
       font-family: 'JetBrains Mono', monospace;
       color: var(--text-secondary);
@@ -645,10 +752,10 @@
     .deep-takeaway-item {
       background: #141418;
       border-left: 2px solid #ffffff;
-      padding: 6px 10px;
-      font-size: 11.5px;
+      padding: 8px 12px;
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     /* Detail Modal */
@@ -676,7 +783,7 @@
       background: #111115;
       border: 1px solid var(--border-medium);
       border-radius: 12px;
-      max-width: 820px;
+      max-width: 840px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -687,7 +794,7 @@
 
     .modal-img-container {
       width: 100%;
-      height: 380px;
+      height: 420px;
       background: #090a10;
       position: relative;
       border-bottom: 1px solid var(--border-subtle);
@@ -702,10 +809,10 @@
 
     .modal-close-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 30px;
-      height: 30px;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: rgba(9, 9, 11, 0.8);
       border: 1px solid var(--border-subtle);
@@ -714,18 +821,18 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .modal-content {
-      padding: 22px 24px;
+      padding: 24px 26px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .modal-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       color: #fff;
     }
@@ -733,9 +840,9 @@
     .modal-desc-box {
       background: #141418;
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 12px;
-      font-size: 12.5px;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 13px;
       line-height: 1.6;
       color: var(--text-secondary);
     }
@@ -750,8 +857,8 @@
       background: #ffffff;
       color: #000000;
       font-weight: 600;
-      padding: 7px 16px;
-      border-radius: 6px;
+      padding: 8px 18px;
+      border-radius: 999px;
       font-size: 12px;
       text-decoration: none;
       display: inline-flex;
@@ -763,8 +870,8 @@
       background: #18181f;
       border: 1px solid var(--border-subtle);
       color: #fff;
-      padding: 7px 14px;
-      border-radius: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
       font-size: 12px;
       cursor: pointer;
       display: inline-flex;
@@ -776,8 +883,8 @@
       background: #ffffff;
       color: #000000;
       font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
       text-decoration: none;
       font-size: 11px;
     }
@@ -815,23 +922,16 @@
   </style>
 </head>
 <body>
-  <div class="ambient-glow"></div>
-
-  <!-- Header -->
+  <!-- Top Sticky Navigation (Godly Standard) -->
   <header>
     <div class="header-inner">
-      <a href="#" class="brand-logo">
-        <div class="logo-badge">VCD</div>
-        <div class="brand-title-group">
-          <h1>
-            品牌优质 UI 与排版全景库
-            <span class="curator-tag">ARCHIVE // VCD.01</span>
-          </h1>
-          <p>Brand Design & Typography Inspiration Archive · 湖北美术学院 视觉传达设计</p>
-        </div>
+      <a href="#" class="masthead-brand">
+        <span class="masthead-logo">VCD ARCHIVE</span>
+        <span class="masthead-sep">/</span>
+        <span class="masthead-sub">HBUA · 湖北美术学院 视觉传达设计</span>
       </a>
 
-      <!-- Search -->
+      <!-- Minimalist Search -->
       <div class="search-container">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
@@ -841,95 +941,74 @@
         <span class="search-shortcut">/</span>
       </div>
 
-      <!-- Sync Status & Live Reload Badge -->
-      <div class="sync-wrapper">
-        <div id="syncBadge" class="sync-badge" title="点击立即从 Google Sheets 重新同步最新数据">
-          <span id="syncDot" class="sync-dot loading"></span>
-          <span id="syncText">正在同步云端表格...</span>
-          <svg id="syncIcon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.7;">
-            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-          </svg>
+      <!-- Right Navigation Actions -->
+      <div class="header-right">
+        <div id="syncBadge" class="sync-indicator" title="点击立即从 Google Sheets 重新同步最新数据">
+          <span id="syncDot" class="sync-dot"></span>
+          <span id="syncText">云端实时同步</span>
         </div>
-      </div>
 
-      <!-- View Switcher -->
-      <div class="view-switcher">
-        <button class="view-btn active" data-view="timeline" title="按收录时间轴浏览">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-          </svg>
-          时间流
-        </button>
-        <button class="view-btn" data-view="grid" title="便当盒无缝画廊">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-          画廊
-        </button>
-        <button class="view-btn" data-view="table" title="紧凑数据列表">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="8" y1="6" x2="21" y2="6"></line>
-            <line x1="8" y1="12" x2="21" y2="12"></line>
-            <line x1="8" y1="18" x2="21" y2="18"></line>
-            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-            <line x1="3" y1="18" x2="3.01" y2="18"></line>
-          </svg>
-          列表
-        </button>
-        <button class="view-btn" data-view="deep" title="标杆品牌11维深度拆解">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-            <polyline points="2 17 12 22 22 17"></polyline>
-            <polyline points="2 12 12 17 22 12"></polyline>
-          </svg>
-          品牌深度拆解
-        </button>
+        <!-- View Switcher -->
+        <div class="view-switcher">
+          <button class="view-btn active" data-view="timeline" title="按收录时间轴浏览">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>时间流</span>
+          </button>
+          <button class="view-btn" data-view="grid" title="便当盒无缝画廊">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>画廊</span>
+          </button>
+          <button class="view-btn" data-view="table" title="紧凑数据列表">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span>列表</span>
+          </button>
+          <button class="view-btn" data-view="deep" title="标杆品牌深度拆解">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+            <span>深度拆解</span>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
   <main>
-    <!-- Compact Architectural Status Strip (High Density) -->
-    <div class="stats-strip">
-      <div class="stats-strip-left">
-        <div class="stat-pill">
-          <span class="stat-pill-label">// 收录案例</span>
-          <span class="stat-pill-val" id="statTotalCount">1,051</span>
-          <span class="stat-pill-sub">件精选</span>
-        </div>
-        <div class="stat-strip-divider"></div>
-        <div class="stat-pill">
-          <span class="stat-pill-label">// 体系架构</span>
-          <span class="stat-pill-val" id="statCategoryCount">8</span>
-          <span class="stat-pill-sub">大设计门类</span>
-        </div>
-        <div class="stat-strip-divider"></div>
-        <div class="stat-pill">
-          <span class="stat-pill-label">// 调度机制</span>
-          <span class="stat-pill-val" style="color: #10b981;">AUTO</span>
-          <span class="stat-pill-sub">云端表格实时热增量</span>
-        </div>
-        <div class="stat-strip-divider"></div>
-        <div class="stat-pill">
-          <span class="stat-pill-label">// 深度拆解</span>
-          <span class="stat-pill-val">6</span>
-          <span class="stat-pill-sub">套旗舰系统</span>
-        </div>
+    <!-- Editorial Masthead Hero (Godly / Minimal Gallery Aesthetic) -->
+    <section class="masthead-hero">
+      <div class="hero-top-tag">CONTEMPORARY DIGITAL ARCHIVE // VOL. 01</div>
+      <h1 class="hero-title">Curated Brand UI, Typography & Visual Systems.</h1>
+      <p class="hero-lead">精选收录当代顶尖品牌官网、独立字体排印工坊、原生工学应用与前沿空间建筑设计文献。基于 Google Sheets 实时热增量同步，为视觉传达设计提供高密度研读样本。</p>
+      <div class="hero-stats-row">
+        <div class="stat-spec"><span class="stat-num" id="statTotalCount">1,062</span><span class="stat-lbl">精选案例</span></div>
+        <div class="stat-divider">/</div>
+        <div class="stat-spec"><span class="stat-num" id="statCategoryCount">12</span><span class="stat-lbl">设计门类</span></div>
+        <div class="stat-divider">/</div>
+        <div class="stat-spec"><span class="stat-num">6</span><span class="stat-lbl">旗舰拆解</span></div>
+        <div class="stat-divider">/</div>
+        <div class="stat-spec"><span class="stat-num" id="statLatestDate">2026-09-30</span><span class="stat-lbl">最新归档</span></div>
       </div>
-      <div class="stats-strip-right">
-        <span>CURATION // HBUA VCD</span>
-        <span style="opacity: 0.4;">|</span>
-        <span id="statLatestDate">UPDATE: 2026-09-30</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Category Filters (Populated Dynamically) -->
+    <!-- Curated Category Bar (Populated Dynamically) -->
     <div class="filter-section" id="categoryFilters">
       <button class="filter-pill bookmark-pill" data-cat="bookmarks" style="border-color: rgba(244, 63, 94, 0.3);">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #f43f5e;">
@@ -940,7 +1019,7 @@
       </button>
 
       <button class="filter-pill active" data-cat="all">
-        全部案例 <span class="filter-count" id="count-all">1051</span>
+        全部案例 <span class="filter-count" id="count-all">1,062</span>
       </button>
       <!-- Other category pills injected dynamically -->
     </div>
@@ -1056,7 +1135,7 @@
       const safeCat = (cat || 'DESIGN').toUpperCase();
 
       const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">' +
-        '<rect width="800" height="500" fill="#0c0d12"/>' +
+        '<rect width="800" height="500" fill="#0d0e12"/>' +
         '<path d="M 40 40 L 760 40 M 40 460 L 760 460" stroke="#1f212a" stroke-width="1"/>' +
         '<path d="M 40 40 L 40 460 M 760 40 L 760 460" stroke="#1f212a" stroke-width="1"/>' +
         '<path d="M 35 40 H 45 M 40 35 V 45" stroke="#3b4054" stroke-width="1.5"/>' +
@@ -1065,7 +1144,7 @@
         '<path d="M 755 460 H 765 M 760 455 V 465" stroke="#3b4054" stroke-width="1.5"/>' +
         '<text x="65" y="80" font-family="monospace" font-size="11" font-weight="600" fill="#64748b" letter-spacing="2">SPECIMEN // ' + safeCat + '</text>' +
         '<text x="735" y="80" font-family="monospace" font-size="11" fill="#475569" text-anchor="end">' + domain + '</text>' +
-        '<text x="720" y="380" font-family="-apple-system, Inter, sans-serif" font-size="220" font-weight="900" fill="#161822" text-anchor="end" letter-spacing="-10">' + initial + '</text>' +
+        '<text x="720" y="380" font-family="-apple-system, Inter, sans-serif" font-size="220" font-weight="900" fill="#181a24" text-anchor="end" letter-spacing="-10">' + initial + '</text>' +
         '<text x="65" y="270" font-family="-apple-system, Inter, sans-serif" font-size="38" font-weight="800" fill="#ffffff" letter-spacing="-1">' + cleanName + '</text>' +
         '<text x="65" y="305" font-family="-apple-system, Inter, sans-serif" font-size="13" fill="#94a3b8">CURATED BRAND UI &amp; TYPOGRAPHY ARCHIVE</text>' +
         '<text x="65" y="440" font-family="monospace" font-size="10" fill="#475569" letter-spacing="1">CH-8001 ARCHIVAL RECORD · 16:10</text>' +
@@ -1080,22 +1159,33 @@
 
       // Tier 1: Canonical Wikimedia Commons CDN (clean thumb/800px- to load high-res directly from Wikimedia)
       if (p.includes('upload.wikimedia.org')) {
-        const cleaned = p.replace(/\/thumb(\/.*)\/\d+px-.*$/, '$1');
-        return cleaned;
+        return p.replace(/\/thumb(\/.*)\/\d+px-.*$/, '$1');
       }
 
-      // Tier 2: Real explicit image URL from Google Sheet (excluding synthetic dummy paths)
-      if (p && p.startsWith('http') && !p.includes('/assets/images/og.jpg') && !p.includes('example.com')) {
+      // Tier 2: Explicit high-trust CDN image from Google Sheets (excluding dummy templates & dead hosts)
+      if (p && p.startsWith('http') && !p.includes('/assets/images/og.jpg') && !p.includes('fontsinuse.com/static') && !p.includes('example.com')) {
         return p;
       }
 
-      // Tier 3: Edge-cached screenshot via Microlink (Cloudflare backed)
-      return 'https://api.microlink.io?url=' + encodeURIComponent(it.url) + '&screenshot=true&meta=false&embed=screenshot.url';
+      // Tier 3: Eleventy CloudFront Edge Screenshot (1200x630 opengraph snapshot)
+      return 'https://v1.screenshot.11ty.dev/' + encodeURIComponent(it.url) + '/opengraph/';
     }
 
     function handleCardImgError(img, name, cat, url) {
-      img.onerror = null;
-      img.src = getArchitecturalFallbackSvg(name, cat, url);
+      const stage = parseInt(img.dataset.retryStage || '0', 10);
+      if (stage === 0) {
+        // Stage 1 Fallback: Thum.io Live Browser Snapshot
+        img.dataset.retryStage = '1';
+        img.src = 'https://image.thum.io/get/width/800/crop/600/' + url;
+      } else if (stage === 1) {
+        // Stage 2 Fallback: Microlink
+        img.dataset.retryStage = '2';
+        img.src = 'https://api.microlink.io?url=' + encodeURIComponent(url) + '&screenshot=true&meta=false&embed=screenshot.url';
+      } else {
+        // Terminal Stage: Architectural Specimen Vector Poster (Zero broken state guaranteed)
+        img.onerror = null;
+        img.src = getArchitecturalFallbackSvg(name, cat, url);
+      }
     }
 
     // LocalStorage Bookmarks
@@ -1438,6 +1528,7 @@
                  class="specimen-img" 
                  loading="lazy"
                  decoding="async"
+                 data-retry-stage="0"
                  onerror="handleCardImgError(this, '${escapeQuotes(it.name)}', '${it.category}', '${escapeQuotes(it.url)}')">
 
             <div class="specimen-hover-overlay">
